@@ -1,20 +1,31 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Termómetro
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-toolbar>
+    <ion-title>
+      Temperatura: {{ temperatura }}°C
+    </ion-title>
+  </ion-toolbar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="thermometer">
+    <div class="liquid" [style.height.%]="temperatura"></div>
+  </div>
+
+  <ion-range id="range" [(ngModel)]="temperatura" min="0" max="100" color="{{getColor()}}">
+    <ion-label slot="start">Frío</ion-label>
+    <ion-label slot="end">Caliente</ion-label>
+  </ion-range>
+
+  <!-- Barra de progreso vertical -->
+  <div class="progress-bar-wrapper">
+    <div class="progress-bar-background"></div>
+    <div class="progress-bar" [style.height.%]="temperatura"></div>
+    <div class="thermometer-base"></div>
   </div>
 </ion-content>
